@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React,{useState} from "react";
 import CategoryFilter from "./CategoryFilter";
 import NewTaskForm from "./NewTaskForm";
 import TaskList from "./TaskList";
@@ -11,41 +11,46 @@ function App() {
   const [categories, setCategories] = useState(CATEGORIES)
   const [selectedCategoryButton, setSelectedCategoryButton] = useState('All')
 
-  function addNewItemToList(newItem) {
-    setTask([...task, newItem])
 
+
+  function addNewItemtoList(newItem){
+    setTask([...task,newItem])
   }
 
-  function deletedItem(deletedItem) {
+  function deletedItem(deletedItem){
     setTask(task.filter((item)=>item.text !== deletedItem))
   }
+
+
   const itemDisplayed = task
 
   .filter(
-    (item) => {
-      if(selectedCategoryButton==='All') return true
-      return selectedCategoryButton === item.category
-    }
-  )
+    (item)=>{ 
+    if(selectedCategoryButton==='All') return true
+    return selectedCategoryButton === item.category
+   } 
+   )
+
+
+
 
   return (
     <div className="App">
       <h2>My tasks</h2>
-      <CategoryFilter 
-      categories={categories}
-      onButton={selectedCategoryButton}
-      selectedButton={selectedCategoryButton}
+      
+      <CategoryFilter
+        categories={categories}
+        onButton={selectedCategoryButton}
+        selectedButton={setSelectedCategoryButton} 
       />
-      <NewTaskForm 
-      onTaskFormSubmit={addNewItemToList}
-      categories={categories}
+      <NewTaskForm
+        onTaskFormSubmit={addNewItemtoList}
+        categories={categories}
       />
       <TaskList 
-      deletedItem={deletedItem}
-      tasks={itemDisplayed}
-      />
+        deletedItem={deletedItem}
+        tasks={itemDisplayed} />
     </div>
   );
 }
-
 export default App;

@@ -1,5 +1,6 @@
 import React from "react";
 
+
 function Task({text,category,deletedItem}) {
 
   return (
@@ -10,5 +11,4 @@ function Task({text,category,deletedItem}) {
     </div>
   );
 }
-
 export default Task;

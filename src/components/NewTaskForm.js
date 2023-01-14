@@ -1,32 +1,38 @@
-import React, {useState} from "react";
+import React,{useState} from "react";
+
 
 function NewTaskForm({onTaskFormSubmit,categories}) {
 
-  const [newItemFields, setNewItemFields] = useState ({
+  const [newItemFields, setNewItemFields]=useState({
     text:'',
     category:'Code'
   })
 
   function handleFields(e){
-    const{name,value} =e.target
+    const{name,value}=e.target
     setNewItemFields({...newItemFields,[name]:value})
+
   }
+  // console.log(newItemFields)
 
 
   return (
-    <form 
-     onSubmit={(e) => {
+
+    <form
+    onSubmit={(e)=>{
       e.preventDefault()
-      onTaskFormSubmit(newItemFields)
-     }}
-     className="new-task-form"
+      onTaskFormSubmit(newItemFields)}}
+    className="new-task-form"
     >
       <label>
         Details
-        <input value={newItemFields.text} onChange={handleFields} type="text" name="text" />
+       
+        <input value={newItemFields.text} onChange={handleFields}  type="text" name="text" />
       </label>
+
       <label>
         Category
+
         <select value={newItemFields.category} onChange={handleFields} name="category">
           {/* render <option> elements for each category here */}
           {categories.map((category,index)=>(
@@ -34,9 +40,9 @@ function NewTaskForm({onTaskFormSubmit,categories}) {
           ))}
         </select>
       </label>
+
       <input type="submit" value="Add task" />
     </form>
   );
 }
-
 export default NewTaskForm;
